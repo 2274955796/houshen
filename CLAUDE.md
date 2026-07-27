@@ -39,6 +39,13 @@
 - 清晰第一，逻辑线明确
 - 每页一个核心观点，不堆文字
 
+## 如果以后做自媒体
+
+> 另一台电脑上有 `cheat-on-content` 全套工具（15 个 skill 的集合包），放在 `桌面\.axiaohou\cheat-on-content-main\` 里。
+> 功能是：选题→写稿→打分→盲预测→发布→T+3天复盘→升级评分规则。专给短视频/内容创作者用的校准闭环。
+> **要用的那一天**：把整个 `.axiaohou` 文件夹拷过来，跑 `bash cheat-on-content-main/cheat-on-content-main/install.sh --copy` 装上，然后说「初始化」就行。
+> 目前用不到——SKILL.md 总路由在 `cheat-on-content-main/cheat-on-content-main/SKILL.md`。
+
 ## 隐藏痛点
 
 - **读英文文献慢** → 需要快速总结 + 结构化笔记
