@@ -1,0 +1,17 @@
+# 隐私保护
+.env
+*.secret
+*.key
+auth*
+token*
+
+# 系统垃圾
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 大文件 / 临时文件
+*.mp4
+*.zip
+node_modules/
+.cheat-cache/
