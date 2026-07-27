@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>内容营销基础 — 风格三：侧边栏知识库风</title>
+<style>
+  /* ===== 侧边栏知识库风 =====
+     左侧固定树形导航，右侧滚动内容区。
+     概念之间的层级关系始终可见——适合"分支结构"思维。 */
+  :root {
+    --sidebar-w: 270px;
+    --sidebar-bg: #1e1b18;
+    --sidebar-text: #b8b0a2;
+    --sidebar-hover: #2c2824;
+    --sidebar-active: #d4943a;
+    --content-bg: #fdfcfa;
+    --content-text: #2c2416;
+    --content-mid: #5c5340;
+    --accent: #c47a38;
+    --accent-bg: #fef6ed;
+    --border: #e8e2d6;
+    --radius: 8px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    display: flex; min-height: 100vh;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+                 "Microsoft YaHei", "Helvetica Neue", sans-serif;
+    background: var(--content-bg); color: var(--content-text);
+  }
+
+  /* ---- 侧边栏 ---- */
+  .sidebar {
+    width: var(--sidebar-w); min-width: var(--sidebar-w);
+    background: var(--sidebar-bg); color: var(--sidebar-text);
+    padding: 28px 0; position: fixed; top: 0; left: 0; bottom: 0;
+    overflow-y: auto; z-index: 10;
+  }
+  .sidebar .brand {
+    padding: 0 22px 24px; border-bottom: 1px solid #3a3430;
+    margin-bottom: 20px;
+  }
+  .sidebar .brand h2 { font-size: 1.05rem; color: #f0e8d5; font-weight: 700; }
+  .sidebar .brand p { font-size: .75rem; color: #8a8070; margin-top: 4px; }
+
+  /* 树形导航 */
+  .tree { padding: 0 16px; font-size: .84rem; line-height: 2.1; }
+  .tree details { margin-bottom: 2px; }
+  .tree summary {
+    cursor: pointer; padding: 5px 8px; border-radius: 5px;
+    color: #d0c8b8; font-weight: 600; list-style: none;
+    transition: background .15s, color .15s;
+  }
+  .tree summary::-webkit-details-marker { display: none; }
+  .tree summary::before { content: "▸ "; font-size: .65rem; margin-right: 2px; }
+  .tree details[open] > summary::before { content: "▾ "; }
+  .tree summary:hover { background: var(--sidebar-hover); color: #f0e8d5; }
+  .tree details[open] > summary { color: var(--sidebar-active); }
+  .tree .sub { padding-left: 14px; border-left: 1px solid #3a3430; margin-left: 10px; }
+  .tree .sub a {
+    display: block; padding: 4px 10px; border-radius: 5px;
+    text-decoration: none; color: #9a9082; transition: all .15s;
+    font-size: .8rem;
+  }
+  .tree .sub a:hover { background: var(--sidebar-hover); color: #e0d8c8; }
+  .tree .sub a.active { color: var(--sidebar-active); background: #2c2520; font-weight: 600; }
+
+  .sidebar .info {
+    margin-top: auto; padding: 20px 22px; border-top: 1px solid #3a3430;
+    font-size: .72rem; color: #7a7060; position: absolute; bottom: 0;
+    width: 100%;
+  }
+
+  /* ---- 内容区 ---- */
+  .content {
+    margin-left: var(--sidebar-w); padding: 48px 52px 80px;
+    max-width: 820px; width: 100%;
+  }
+  .content h1 { font-size: 1.8rem; font-weight: 800; margin-bottom: 8px; letter-spacing: -.01em; }
+  .content .meta { font-size: .82rem; color: var(--content-mid); margin-bottom: 36px; }
+  .content section { margin-bottom: 48px; }
+  .content h2 {
+    font-size: 1.2rem; font-weight: 700; margin-bottom: 16px;
+    padding-bottom: 8px; border-bottom: 2px solid var(--accent);
+    display: inline-block;
+  }
+  .content p { font-size: .94rem; line-height: 1.85; color: var(--content-mid); margin-bottom: 14px; }
+
+  /* 定义框 */
+  .def-box {
+    background: var(--accent-bg); border-left: 4px solid var(--accent);
+    padding: 18px 22px; border-radius: 0 var(--radius) var(--radius) 0;
+    margin: 18px 0 24px;
+  }
+  .def-box .label { font-size: .7rem; font-weight: 800; letter-spacing: .1em; color: var(--accent); text-transform: uppercase; margin-bottom: 6px; }
+  .def-box p { font-size: .9rem; margin-bottom: 0; color: #6b4c2a; }
+
+  /* 三分列 */
+  .triplet {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;
+    margin: 20px 0 28px;
+  }
+  .triplet .cell {
+    border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 18px 16px; background: #fffdf9;
+  }
+  .triplet .cell .tag { font-size: .68rem; font-weight: 700; letter-spacing: .06em; color: var(--accent); margin-bottom: 6px; }
+  .triplet .cell p { font-size: .85rem; line-height: 1.7; margin: 0; }
+
+  /* 分支图 */
+  .branch-box {
+    background: #faf8f3; border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 24px; margin: 20px 0 28px;
+  }
+  .branch-box h4 { font-size: .8rem; color: var(--content-mid); margin-bottom: 12px; font-weight: 600; }
+  .branch-box pre {
+    font-family: "SF Mono", "Cascadia Code", "Consolas", "Courier New", monospace;
+    font-size: .82rem; line-height: 2.1; color: #3d3422; white-space: pre; overflow-x: auto;
+  }
+  .branch-box pre .hl { color: var(--accent); font-weight: 700; }
+
+  /* 引用 */
+  blockquote {
+    border-left: 3px solid var(--accent); margin: 16px 0 24px;
+    padding: 14px 20px; background: var(--accent-bg);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    font-style: italic; color: #7a5a30; font-size: .92rem;
+  }
+
+  /* 移动端 */
+  @media (max-width: 720px) {
+    body { flex-direction: column; }
+    .sidebar {
+      position: relative; width: 100%; min-width: 100%; max-height: 40vh;
+    }
+    .sidebar .info { position: relative; }
+    .content { margin-left: 0; padding: 28px 18px; }
+    .triplet { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ====== 侧边栏：树形导航 ====== -->
+<aside class="sidebar">
+  <div class="brand">
+    <h2>小吼 · 知识库</h2>
+    <p>数字营销学习笔记</p>
+  </div>
+  <div class="tree">
+    <details open>
+      <summary>数字营销</summary>
+      <div class="sub">
+        <details open>
+          <summary>内容营销</summary>
+          <div class="sub">
+            <a href="#" class="active">什么是内容营销</a>
+            <a href="#">内容营销 vs 传统广告</a>
+            <a href="#">Patagonia 案例拆解</a>
+          </div>
+        </details>
+        <details>
+          <summary>社交媒体营销</summary>
+          <div class="sub">
+            <a href="#">平台策略</a>
+            <a href="#">内容日历</a>
+          </div>
+        </details>
+        <details>
+          <summary>SEO 基础</summary>
+          <div class="sub">
+            <a href="#">关键词研究</a>
+            <a href="#">页面优化</a>
+          </div>
+        </details>
+      </div>
+    </details>
+    <details>
+      <summary>品牌管理</summary>
+      <div class="sub">
+        <a href="#">品牌定位</a>
+        <a href="#">品牌一致性</a>
+      </div>
+    </details>
+    <details>
+      <summary>消费者行为</summary>
+      <div class="sub">
+        <a href="#">决策模型</a>
+        <a href="#">注意力经济学</a>
+      </div>
+    </details>
+  </div>
+  <div class="info">最后更新：2026-07-27<br><a href="#" style="color:#8a8070;">GitHub</a></div>
+</aside>
+
+<!-- ====== 右侧内容 ====== -->
+<main class="content">
+
+  <h1>什么是内容营销？</h1>
+  <p class="meta">📖 数字营销 · 内容策略 &nbsp;|&nbsp; 学习笔记</p>
+
+  <section>
+    <h2>一、定义</h2>
+    <div class="def-box">
+      <div class="label">核心定义</div>
+      <p>内容营销是一种战略性营销方法，专注于创建和分发有价值的、相关的、一致的内容，以吸引和留住明确定义的受众——并最终推动有利可图的客户行动。</p>
+    </div>
+    <p>关键在于<strong>「有价值」</strong>三个字。不是「看起来像内容的广告」，而是内容本身就对受众有用——即使他们永远不会买你的东西。</p>
+
+    <div class="triplet">
+      <div class="cell">
+        <div class="tag">📖 定义</div>
+        <p>用内容建立受众「即使不买也愿意看」的理由。这个理由立住之后，品牌不需要打断消费者的注意力。</p>
+      </div>
+      <div class="cell">
+        <div class="tag">🔍 例子</div>
+        <p>红牛不在饮料货架上竞争，它在 YouTube 做极限运动媒体。受众不是因为渴才看红牛——他们想看跳伞。</p>
+      </div>
+      <div class="cell">
+        <div class="tag">⚙️ 原理</div>
+        <p><strong>注意力替代效应</strong>：品牌内容成为娱乐/教育来源后，在消费者心智中完成从「噪声」到「想看的东西」的置换。</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>二、营销推广分支</h2>
+    <div class="branch-box">
+      <h4>📐 概念树</h4>
+      <pre><span class="hl">营销推广</span>
+├── <span class="hl">传统广告</span>（打断式）
+│   ├── 电视/广播/户外/弹窗
+│   ├── 特征：买注意力 → 塞信息 → 等转化
+│   └── 问题：成本越来越高，效果越来越差
+└── <span class="hl">内容营销</span>（吸引式）
+    ├── 博客/视频/播客/社交媒体
+    ├── 特征：建信任 → 持续输出 → 你来找我
+    └── 优势：内容一直在那儿帮你说话，不像广告停了就没了</pre>
+    </div>
+    <blockquote>「传统广告是租用别人的注意力；内容营销是建立自己的注意力资产。」</blockquote>
+  </section>
+
+  <section>
+    <h2>三、Patagonia：「别买这件夹克」</h2>
+    <p>2011 年黑色星期五，当所有品牌都在打折时，Patagonia 在《纽约时报》登了整版广告——劝消费者<strong>别买</strong>。广告详尽列出这件 R2 夹克从原料到成衣的环境成本：135 升水、20 磅二氧化碳……</p>
+    <p>这不是噱头。这是品牌花了 40 年经营环保叙事之后，在消费主义最高潮那天的一次价值观落地。<strong>信任是之前攒的，不是那天蹦出来的。</strong></p>
+  </section>
+
+</main>
+
+</body>
+</html>

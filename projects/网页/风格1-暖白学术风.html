@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>内容营销基础 — 风格一：暖白学术风</title>
+<style>
+  /* ===== 暖白学术风 =====
+     像一本排版精良的教材：暖米色底、衬线标题、
+     宽裕留白、清晰的定义·例子·原理三段式 */
+  :root {
+    --bg:        #fdfaf5;
+    --card:      #fffdf9;
+    --text:      #2c2416;
+    --text-mid:  #5c5340;
+    --accent:    #c47a38;
+    --accent-bg: #fef3e6;
+    --border:    #e8dcc8;
+    --shadow:    0 1px 3px rgba(60,40,20,.06);
+    --radius:    6px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Georgia, "Noto Serif SC", "Source Han Serif CN", "Songti SC", serif;
+    background: var(--bg); color: var(--text); line-height: 1.85;
+    max-width: 760px; margin: 0 auto; padding: 60px 24px 80px;
+  }
+
+  /* 顶部 */
+  header {
+    text-align: center; padding-bottom: 40px; margin-bottom: 48px;
+    border-bottom: 1px solid var(--border);
+  }
+  header h1 { font-size: 2rem; font-weight: 700; letter-spacing: .02em; color: #1a1008; }
+  header .sub { margin-top: 8px; font-size: .95rem; color: var(--text-mid); font-style: italic; }
+  header .tags { margin-top: 14px; display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+  header .tags span {
+    background: var(--accent-bg); color: var(--accent);
+    padding: 3px 14px; border-radius: 20px; font-size: .82rem;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+
+  /* 导航面包屑 */
+  nav.breadcrumb {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: .82rem; color: var(--text-mid); margin-bottom: 40px;
+  }
+  nav.breadcrumb a { color: var(--accent); text-decoration: none; }
+  nav.breadcrumb a:hover { text-decoration: underline; }
+
+  /* 章节 */
+  section { margin-bottom: 52px; }
+  h2 {
+    font-size: 1.42rem; font-weight: 700; color: #1a1008;
+    padding-bottom: 10px; border-bottom: 2px solid var(--accent);
+    margin-bottom: 20px; display: inline-block;
+  }
+  h3 {
+    font-size: 1.08rem; font-weight: 700; color: var(--accent);
+    margin: 22px 0 10px;
+  }
+  p { margin-bottom: 14px; color: var(--text-mid); }
+
+  /* 三段式卡片: 定义 / 例子 / 原理 */
+  .triplet {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px;
+    margin: 22px 0 30px;
+  }
+  .triplet .box {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 20px 18px; box-shadow: var(--shadow);
+  }
+  .triplet .box .label {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: .72rem; text-transform: uppercase; letter-spacing: .08em;
+    color: var(--accent); margin-bottom: 8px; font-weight: 700;
+  }
+  .triplet .box p { font-size: .89rem; line-height: 1.7; margin-bottom: 0; }
+
+  /* 分支图 */
+  .branch {
+    background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 24px 20px; box-shadow: var(--shadow); margin: 20px 0 28px;
+  }
+  .branch h4 {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: .82rem; color: var(--text-mid); margin-bottom: 14px; font-weight: 600;
+  }
+  .branch-tree { font-family: "SF Mono", "Cascadia Code", "Consolas", monospace; font-size: .85rem; line-height: 2; color: var(--text); }
+  .branch-tree .hl { color: var(--accent); font-weight: 700; }
+
+  /* 引用块 */
+  blockquote {
+    border-left: 3px solid var(--accent); margin: 18px 0 24px;
+    padding: 12px 20px; background: var(--accent-bg); border-radius: 0 var(--radius) var(--radius) 0;
+    font-style: italic; color: #6b4c2a;
+  }
+
+  /* 页脚 */
+  footer {
+    margin-top: 60px; padding-top: 28px; border-top: 1px solid var(--border);
+    text-align: center; font-size: .82rem; color: var(--text-mid);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+  footer a { color: var(--accent); text-decoration: none; }
+
+  @media (max-width: 600px) {
+    body { padding: 32px 16px 48px; }
+    .triplet { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>内容营销基础</h1>
+  <p class="sub">理解内容营销的三个层次：定义 · 例子 · 原理</p>
+  <div class="tags">
+    <span>数字营销</span><span>内容策略</span><span>品牌</span>
+  </div>
+</header>
+
+<nav class="breadcrumb">
+  <a href="#">首页</a> &nbsp;/&nbsp; <a href="#">学习笔记</a> &nbsp;/&nbsp; 内容营销基础
+</nav>
+
+<!-- ============ 第一节 ============ -->
+<section>
+  <h2>一、什么是内容营销</h2>
+
+  <p>内容营销不是「做内容来卖东西」。它是用持续输出的、有独立价值的内容，让受众建立一个理由——一个「即使不买东西也愿意看」的理由。当这个理由立住了，品牌不再需要去打断消费者的注意力——消费者会主动来找你。</p>
+
+  <div class="triplet">
+    <div class="box">
+      <div class="label">📖 定义</div>
+      <p>内容营销是一种战略性营销方法，专注于创建和分发有价值的、相关的、一致的内容，以吸引和留住明确定义的受众——并最终推动有利可图的客户行动。</p>
+    </div>
+    <div class="box">
+      <div class="label">🔍 例子</div>
+      <p>红牛不做饮料广告，做极限运动内容。它在 YouTube 上运营一个媒体频道，每年产出上千条极限运动视频。消费者不是因为渴了才关注红牛——他们想看跳伞和冲浪。</p>
+    </div>
+    <div class="box">
+      <div class="label">⚙️ 原理</div>
+      <p><strong>注意力替代效应</strong>：当品牌内容本身成为娱乐/教育来源，它就在消费者心智中完成了一次置换——从「广告噪声」变成「我想看的东西」，注意力成本降为零。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 第二节 ============ -->
+<section>
+  <h2>二、内容营销 vs 传统广告</h2>
+
+  <p>很多人以为内容营销只是「把广告写得软一点」。差别不在语气软硬，而在底层逻辑。</p>
+
+  <div class="branch">
+    <h4>📐 概念分支图</h4>
+    <div class="branch-tree">
+      <span class="hl">营销推广</span><br>
+      ├── <span class="hl">传统广告</span>（打断式）<br>
+      │&nbsp;&nbsp;&nbsp;├── 电视广告：你正在看剧，我插进来<br>
+      │&nbsp;&nbsp;&nbsp;├── 网页弹窗：你正在阅读，我挡住你<br>
+      │&nbsp;&nbsp;&nbsp;└── 逻辑：<span style="color:#5c5340">买注意力 → 塞信息 → 希望转化</span><br>
+      └── <span class="hl">内容营销</span>（吸引式）<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── 博客/视频/播客：你主动搜索，我提供价值<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── 社交媒体运营：你在刷，我让你停下来不是因为广告<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── 逻辑：<span style="color:#5c5340">建信任 → 持续输出 → 受众主动找你</span>
+    </div>
+  </div>
+
+  <blockquote>
+    「传统广告是租用别人的注意力；内容营销是建立自己的注意力资产。」—— 这个比喻比任何定义都好理解。
+  </blockquote>
+</section>
+
+<!-- ============ 第三节 ============ -->
+<section>
+  <h2>三、一个经典案例：Patagonia</h2>
+
+  <div class="triplet">
+    <div class="box">
+      <div class="label">📖 背景</div>
+      <p>2011 年黑色星期五，户外品牌 Patagonia 在《纽约时报》刊登整版广告，标题是：<strong>「别买这件夹克」</strong>。广告详细列出这件夹克的环境成本，呼吁消费者少买、修旧、再利用。</p>
+    </div>
+    <div class="box">
+      <div class="label">🔍 拆解</div>
+      <p>一家服装公司叫你别买衣服。反常到每个人都会停下来看。但这不是噱头——Patagonia 长期经营环保叙事，这个广告是它的价值观顶点，不是起点。信任是之前 40 年攒的。</p>
+    </div>
+    <div class="box">
+      <div class="label">⚙️ 原理</div>
+      <p><strong>品牌一致性溢价</strong>：当品牌的行为与宣称的价值观完全一致时，消费者会支付溢价——不是因为产品更好，而是因为购买这个品牌让他们「对自己感觉更好」。</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>小吼 · 个人学习笔记 &nbsp;|&nbsp; <a href="https://github.com/2274955796">GitHub</a></p>
+</footer>
+
+</body>
+</html>
